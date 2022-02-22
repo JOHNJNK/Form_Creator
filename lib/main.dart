@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:form_creater/radioSampleTest.dart';
+import 'package:form_creater/radioTagTesting.dart';
 
 import 'text_form.dart';
 
@@ -56,36 +58,63 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
         centerTitle: true,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const TextForm()));
-            },
-            child: Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.all(10),
-              margin: const EdgeInsets.all(10),
-              width: size.width,
-              height: size.height * 0.3,
-              decoration: box,
-              child: const Text('CREATE FORM'),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const TextForm()));
+              },
+              child: Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.all(10),
+                margin: const EdgeInsets.all(10),
+                width: size.width,
+                height: size.height * 0.3,
+                decoration: box,
+                child: const Text('CREATE FORM'),
+              ),
             ),
-          ),
-          Container(
-            alignment: Alignment.center,
-            padding: const EdgeInsets.all(10),
-            margin: const EdgeInsets.all(10),
-            width: size.width,
-            height: size.height * 0.3,
-            decoration: box,
-            child: const Text('VIEW FORMS'),
-          )
-        ],
+            GestureDetector(
+              onTap: (){
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const RadioSample()));
+              },
+              child: Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.all(10),
+                margin: const EdgeInsets.all(10),
+                width: size.width,
+                height: size.height * 0.3,
+                decoration: box,
+                child: const Text('VIEW FORMS'),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const RadioTesting()));
+              },
+              child: Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.all(10),
+                margin: const EdgeInsets.all(10),
+                width: size.width,
+                height: size.height * 0.3,
+                decoration: box,
+                child: const Text('CREATE FORM'),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
