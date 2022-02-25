@@ -88,7 +88,8 @@ class _RadioTestingState extends State<RadioTesting> {
               ),
               Text(_result),
             ],
-          )),
+          ),
+      ),
     );
   }
 
@@ -152,13 +153,10 @@ class _Row2State extends State<Row2> {
 
   _Row2State({required this.key});
 
-  int Mcount = 0;
-  String _result = '';
-  late List<Map<String, dynamic>> options;
+  late List options;
   void initState() {
     // TODO: implement initState
     super.initState();
-    Mcount = 0;
     options = [];
   }
 
@@ -181,7 +179,7 @@ class _Row2State extends State<Row2> {
               Flexible(
                 child: ListView.builder(
                     shrinkWrap: true,
-                    itemCount: Mcount,
+                    itemCount: options.length,
                     itemBuilder: (context, index) {
                       return _radio(index);
                     }),
@@ -189,11 +187,10 @@ class _Row2State extends State<Row2> {
               IconButton(
                   onPressed: () async {
                     setState(() {
-                      Mcount++;
+                      options.add('');
                     });
                   },
                   icon: Icon(Icons.add)),
-              Text(_result),
             ],
           )
         ],
@@ -209,7 +206,7 @@ class _Row2State extends State<Row2> {
             child: TextFormField(
           decoration: InputDecoration(
             border: InputBorder.none,
-            hintText: 'Optioin$key',
+            hintText: 'Optioin $key',
           ),
           onChanged: (val) {
             _onUpdate2(key, val);
@@ -239,14 +236,7 @@ class _Row2State extends State<Row2> {
       'value': val,
     };
     options.add(json);
-    setState(() {
-      _result = _prettyPrint(options);
-    });
   }
 
 //Multiple Choice Tag
-  String _prettyPrint(jsonObject) {
-    var encoder = const JsonEncoder.withIndent('    ');
-    return encoder.convert(jsonObject);
-  }
 }

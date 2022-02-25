@@ -8,9 +8,29 @@ class RadioSample extends StatefulWidget {
 }
 
 class _RadioSampleState extends State<RadioSample> {
+  late int d;
+  List<dynamic> data = [
+    {'type': 'Question', 'pos': 1, 'ques': 'What is your age??'},
+    {
+      'type': 'radio',
+      'pos': 2,
+      'ques': 'Gender',
+      'choices': ['Male', 'Female', 'Other']
+    },
+    {
+      'type': 'checkbox',
+      'pos': 3,
+      'ques': 'Languages Known',
+      'options': ['Tamil', 'English', 'Hindi']
+    }
+  ];
 
-  bool _value = false;
-  int val = -1;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    d=0;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,19 +42,48 @@ class _RadioSampleState extends State<RadioSample> {
         child: Column(
           children: [
             Container(
-              child: RadioListTile(
-                  value: 1,
-                  groupValue: val,
-                  onChanged: (value){
-                    setState(() {
-                      val=value.toString() as int;
-                    });
-                  },
-                  title: Text('Sample'),
-              )
-            ),
+                child: Flexible(
+                  child: ListView.separated(
+                      itemCount: 3,
+                      separatorBuilder: (context, index) => const SizedBox(
+                            height: 5.0,
+                          ),
+                      itemBuilder: (context, index) {
+                        //return const Text("1");
+                        return RadioListTile(
+                          value: index,
+                          groupValue: d,
+                          onChanged: (value) {
+                            setState(() {
+                              d=value.toString() as int;
+                            });
+                          },
+                          title: Text('Sample $index'),
+                        );
+                      }),
+                )),
+            Container(
+                child: Flexible(
+                  child: ListView.separated(
+                      itemCount: 3,
+                      separatorBuilder: (context, index) => const SizedBox(
+                        height: 5.0,
+                      ),
+                      itemBuilder: (context, index) {
+                        bool _checked=false;
+                        //return const Text("1");
+                        return CheckboxListTile(
+                          controlAffinity: ListTileControlAffinity.leading,
+                          value: _checked,
+                          onChanged: (bool ) {
+
+                          },
+                          title: Text('Sample $index'),
+                        );
+                      }),
+                )),
             Icon(
-                Icons.circle_outlined,
+              Icons.circle_outlined,
             )
           ],
         ),
