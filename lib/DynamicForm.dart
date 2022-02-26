@@ -81,9 +81,7 @@ class _Dynamic_FormState extends State<Dynamic_Form> {
       for(int i=0;i<d.length;i++){
         _answer[index]['answer'].add(false);
       }
-
     }
-
     return Column(
       children: [
         Wrap(
@@ -101,6 +99,7 @@ class _Dynamic_FormState extends State<Dynamic_Form> {
         ),
         Container(
           child: ListView.separated(
+            physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemCount: d.length,
             separatorBuilder: (context,ind) => const SizedBox(height: 5.0,),
@@ -144,6 +143,7 @@ class _Dynamic_FormState extends State<Dynamic_Form> {
         ),
         Container(
           child: ListView.separated(
+            physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemCount: d.length,
             separatorBuilder: (context,ind) => const SizedBox(height: 5.0,),
