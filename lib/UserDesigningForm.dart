@@ -70,11 +70,9 @@ class _FormCreatorState extends State<FormCreator> {
           ),
           IconButton(
             onPressed: () {
-              dynamic data={'1':_values};
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>  Dynamic_Form(data)));
+              dynamic data = {'1': _values};
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Dynamic_Form(data)));
             },
             icon: const Icon(Icons.send_rounded),
           ),
@@ -86,15 +84,15 @@ class _FormCreatorState extends State<FormCreator> {
             child: ListView.builder(
                 shrinkWrap: true,
                 itemCount: _values.length,
-                itemBuilder: (context, index){
+                itemBuilder: (context, index) {
                   dynamic element = _values[index];
                   String type = element['type'];
                   int pos = element['pos'];
-                  if(type=='checkbox'){
+                  if (type == 'checkbox') {
                     return CTags(pos, index);
                   }
-                  if(type=='radio'){
-                    return RTags(pos,index);
+                  if (type == 'radio') {
+                    return RTags(pos, index);
                   }
                   return QTags(pos, index);
                   //return Tags(element: element);
@@ -104,15 +102,15 @@ class _FormCreatorState extends State<FormCreator> {
             height: 10.0,
           ),
           IconButton(
-              onPressed: (){
-                setState(() {
-                  _values.removeLast();
-                });
-              },
-              icon: const Icon(
-                Icons.remove_circle,
-                color: Colors.red,
-              ),
+            onPressed: () {
+              setState(() {
+                _values.removeLast();
+              });
+            },
+            icon: const Icon(
+              Icons.remove_circle,
+              color: Colors.red,
+            ),
           ),
           //Flexible(child: ListView(children: [Text(_result)]),),
         ],
@@ -125,12 +123,12 @@ class _FormCreatorState extends State<FormCreator> {
               child: const Icon(Icons.radio_button_checked),
               onTap: () {
                 setState(() {
-                  int d=_values.length+1;
-                  dynamic data={
-                    'type':'radio',
-                    'pos':d,
-                    'ques':'',
-                    'choices':[''],
+                  int d = _values.length + 1;
+                  dynamic data = {
+                    'type': 'radio',
+                    'pos': d,
+                    'ques': '',
+                    'choices': [''],
                   };
                   _values.add(data);
                 });
@@ -140,12 +138,12 @@ class _FormCreatorState extends State<FormCreator> {
               child: const Icon(Icons.check_box_rounded),
               onTap: () {
                 setState(() {
-                  int d=_values.length+1;
-                  dynamic data={
-                    'type':'checkbox',
-                    'pos':d,
-                    'ques':'',
-                    'options':[''],
+                  int d = _values.length + 1;
+                  dynamic data = {
+                    'type': 'checkbox',
+                    'pos': d,
+                    'ques': '',
+                    'options': [''],
                   };
                   _values.add(data);
                 });
@@ -155,12 +153,8 @@ class _FormCreatorState extends State<FormCreator> {
             child: const Icon(Icons.short_text_rounded),
             onTap: () async {
               setState(() {
-                int d=_values.length+1;
-                dynamic data={
-                  'type':'Question',
-                  'pos':d,
-                  'ques':''
-                };
+                int d = _values.length + 1;
+                dynamic data = {'type': 'Question', 'pos': d, 'ques': ''};
                 _values.add(data);
               });
             },
@@ -170,12 +164,12 @@ class _FormCreatorState extends State<FormCreator> {
               child: const Icon(Icons.title_rounded),
               onTap: () {
                 setState(() {
-                  int d=_values.length+1;
-                  dynamic data={
-                    'type':'Heading',
-                    'pos':d,
-                    'head':'Untitled',
-                    'desc':''
+                  int d = _values.length + 1;
+                  dynamic data = {
+                    'type': 'Heading',
+                    'pos': d,
+                    'head': 'Untitled',
+                    'desc': ''
                   };
                   _values.add(data);
                 });
@@ -187,11 +181,9 @@ class _FormCreatorState extends State<FormCreator> {
 
   //heading
 
-
-
   //CheckBox
 
-  CTags(key,index){
+  CTags(key, index) {
     return Container(
       padding: const EdgeInsets.all(5),
       margin: const EdgeInsets.all(5),
@@ -212,14 +204,14 @@ class _FormCreatorState extends State<FormCreator> {
                   },
                 ),
               ),
-
             ],
           ),
           Container(
             child: ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: _values[index]['options'].length,
-              itemBuilder: (context, pos){
+              itemBuilder: (context, pos) {
                 //int pos= _values[index]['choices'].length;
                 //print(pos);
                 return _options(pos, index);
@@ -230,24 +222,25 @@ class _FormCreatorState extends State<FormCreator> {
           Row(
             children: [
               IconButton(
-                onPressed: (){
+                onPressed: () {
                   setState(() {
-                    var d=_values[index]['options'];
+                    var d = _values[index]['options'];
                     d.add('');
-                    _values[index]['options']=d;
+                    _values[index]['options'] = d;
                   });
-
                 },
-                icon: const Icon(Icons.add_circle_outline_rounded),),
+                icon: const Icon(Icons.add_circle_outline_rounded),
+              ),
               IconButton(
-                onPressed: (){
+                onPressed: () {
                   setState(() {
-                    var d=_values[index]['options'];
+                    var d = _values[index]['options'];
                     d.removeLast();
-                    _values[index]['options']=d;
+                    _values[index]['options'] = d;
                   });
                 },
-                icon: const Icon(Icons.remove_circle_outline_rounded),),
+                icon: const Icon(Icons.remove_circle_outline_rounded),
+              ),
             ],
           ),
         ],
@@ -256,7 +249,7 @@ class _FormCreatorState extends State<FormCreator> {
   }
 
   //Radio
-  RTags(key,index){
+  RTags(key, index) {
     return Container(
       padding: const EdgeInsets.all(5),
       margin: const EdgeInsets.all(5),
@@ -270,49 +263,50 @@ class _FormCreatorState extends State<FormCreator> {
                 width: 10.0,
               ),
               Expanded(
-                  child: TextFormField(
-                    initialValue: _values[index]['ques'],
-                    onChanged: (val) {
-                      _onUpdate(val, index);
-                    },
-                  ),
+                child: TextFormField(
+                  initialValue: _values[index]['ques'],
+                  onChanged: (val) {
+                    _onUpdate(val, index);
+                  },
+                ),
               ),
-
             ],
           ),
           Container(
             child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: _values[index]['choices'].length,
-                itemBuilder: (context, pos){
-                  //int pos= _values[index]['choices'].length;
-                  //print(pos);
-                  return _choices(pos, index);
-                  //return Tags(element: element);
-                },
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: _values[index]['choices'].length,
+              itemBuilder: (context, pos) {
+                //int pos= _values[index]['choices'].length;
+                //print(pos);
+                return _choices(pos, index);
+                //return Tags(element: element);
+              },
             ),
           ),
           Row(
             children: [
               IconButton(
-                  onPressed: (){
-                    setState(() {
-                      var d=_values[index]['choices'];
-                      d.add('');
-                      _values[index]['choices']=d;
-                    });
-
-                  },
-                  icon: const Icon(Icons.add_circle_outline_rounded),),
-              IconButton(
-                onPressed: (){
+                onPressed: () {
                   setState(() {
-                    var d=_values[index]['choices'];
-                    d.removeLast();
-                    _values[index]['choices']=d;
+                    var d = _values[index]['choices'];
+                    d.add('');
+                    _values[index]['choices'] = d;
                   });
                 },
-                icon: const Icon(Icons.remove_circle_outline_rounded),),
+                icon: const Icon(Icons.add_circle_outline_rounded),
+              ),
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    var d = _values[index]['choices'];
+                    d.removeLast();
+                    _values[index]['choices'] = d;
+                  });
+                },
+                icon: const Icon(Icons.remove_circle_outline_rounded),
+              ),
             ],
           ),
         ],
@@ -334,12 +328,11 @@ class _FormCreatorState extends State<FormCreator> {
           ),
           Expanded(
               child: TextFormField(
-                initialValue: _values[index]['ques'],
-              onChanged: (val) {
+            initialValue: _values[index]['ques'],
+            onChanged: (val) {
               _onUpdate(val, index);
             },
           )),
-
         ],
       ),
     );
@@ -352,9 +345,9 @@ class _FormCreatorState extends State<FormCreator> {
     });
   }
 
-  _onUpdateList(val,index,type,pos){
+  _onUpdateList(val, index, type, pos) {
     setState(() {
-      _values[index][type][pos]=val;
+      _values[index][type][pos] = val;
       _result = _prettyPrint(_values);
     });
   }
@@ -366,20 +359,22 @@ class _FormCreatorState extends State<FormCreator> {
 
   //choices
 
-  _choices(pos,index){
+  _choices(pos, index) {
     return Container(
       margin: const EdgeInsets.fromLTRB(20, 3, 0, 3),
       child: Row(
         children: [
           const Icon(Icons.circle_outlined),
-          const SizedBox(width: 5,),
+          const SizedBox(
+            width: 5,
+          ),
           Expanded(
               child: TextFormField(
-                initialValue: _values[index]['choices'][pos],
-                onChanged: (val) {
-                  _onUpdateList(val, index,'choices',pos);
-                },
-              )),
+            initialValue: _values[index]['choices'][pos],
+            onChanged: (val) {
+              _onUpdateList(val, index, 'choices', pos);
+            },
+          )),
         ],
       ),
     );
@@ -387,25 +382,26 @@ class _FormCreatorState extends State<FormCreator> {
 
   //options
 
-  _options(pos,index){
+  _options(pos, index) {
     return Container(
       margin: const EdgeInsets.fromLTRB(20, 3, 0, 3),
       child: Row(
         children: [
           const Icon(Icons.check_box_outlined),
-          const SizedBox(width: 5,),
+          const SizedBox(
+            width: 5,
+          ),
           Expanded(
               child: TextFormField(
-                initialValue: _values[index]['options'][pos],
-                onChanged: (val) {
-                  _onUpdateList(val, index,'options',pos);
-                },
-              )),
+            initialValue: _values[index]['options'][pos],
+            onChanged: (val) {
+              _onUpdateList(val, index, 'options', pos);
+            },
+          )),
         ],
       ),
     );
   }
-
 }
 
 class Tags extends StatefulWidget {
@@ -423,7 +419,6 @@ class _TagsState extends State<Tags> {
     return Text('$element');
   }
 }
-
 
 /*
 
