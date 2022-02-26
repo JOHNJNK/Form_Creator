@@ -74,7 +74,16 @@ class _Dynamic_FormState extends State<Dynamic_Form> {
 
   CATag(pos,index){
     var value = maindata[index]['ques'];
+    var ans = _answer[index]['answer'];
     List d =maindata[index]['options'];
+    if(ans==null){
+      _answer[index]['answer']=[];
+      for(int i=0;i<d.length;i++){
+        _answer[index]['answer'].add(false);
+      }
+
+    }
+
     return Column(
       children: [
         Wrap(
@@ -98,12 +107,11 @@ class _Dynamic_FormState extends State<Dynamic_Form> {
             itemBuilder: (context,ind){
               return CheckboxListTile(
                   title: Text(d[ind]),
-                  value: true,
+                  value: _answer[index]['answer'][ind],
                   controlAffinity: ListTileControlAffinity.leading,
-                  //groupValue: _answer[index]['answer'],
                   onChanged: (val){
                     setState(() {
-                      //_answer[index]['answer'];
+                      _answer[index]['answer'][ind]=val;
                     });
                   }
               );
@@ -146,7 +154,7 @@ class _Dynamic_FormState extends State<Dynamic_Form> {
                   groupValue: _answer[index]['answer'],
                   onChanged: (val){
                     setState(() {
-                      _answer[index]['answer'];
+                      _answer[index]['answer']=d[ind];
                     });
                   }
               );

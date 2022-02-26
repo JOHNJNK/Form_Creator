@@ -114,7 +114,7 @@ class _FormCreatorState extends State<FormCreator> {
                 color: Colors.red,
               ),
           ),
-          Flexible(child: ListView(children: [Text(_result)]),),
+          //Flexible(child: ListView(children: [Text(_result)]),),
         ],
       ),
       floatingActionButton: SpeedDial(
