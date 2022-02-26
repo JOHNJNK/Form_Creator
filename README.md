@@ -1,5 +1,12 @@
 # form_creater
 
+It is the Dynamic Form creater. Like Google Form in mobile application.
+
+It has the features like Shortanwer, Radio and CheckBox
+
+How it Works:
+  User Crearte their own form dynamically.
+
 A new Flutter project.
 
 ## Getting Started
